@@ -28,7 +28,6 @@ export default function Login() {
         toast.error(res.error);
       }
       if (res?.error === null) {
-        router.replace("/patient");
         toast.success("Login berhasil");
       }
     });
@@ -36,7 +35,7 @@ export default function Login() {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="card flex justify-center items-center flex-shrink-0 w-full md:h-1/2 h-full max-w-sm lg:shadow-2xl bg-base-100">
+      <div className="card flex justify-center items-center flex-shrink-0 w-full md:h-1/2 h-full max-w-sm lg:shadow-2xl bg-neutral-100">
         <h1 className="text-5xl text-center font-bold">Login</h1>
         <form className="w-full" onSubmit={handleSubmit}>
           <div className="card-body">

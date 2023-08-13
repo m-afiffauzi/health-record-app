@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { BiEdit } from "react-icons/bi";
 
 export default function EditRecord({ record }: any) {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,8 +50,11 @@ export default function EditRecord({ record }: any) {
 
   return (
     <div>
-      <button className="btn btn-success min-h-8 h-8" onClick={handleModal}>
-        Edit
+      <button
+        className="btn btn-success min-h-8 h-8 text-xl"
+        onClick={handleModal}
+      >
+        <BiEdit />
       </button>
       <div className={isOpen ? `modal modal-open` : `modal`}>
         <div className="modal-box">

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { BiTrash } from "react-icons/bi";
 
 export default function DeletePatient({ patient }: any) {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,8 +28,11 @@ export default function DeletePatient({ patient }: any) {
 
   return (
     <div>
-      <button className="btn btn-error min-h-8 h-8" onClick={handleModal}>
-        Hapus
+      <button
+        className="btn btn-error min-h-8 h-8 text-xl"
+        onClick={handleModal}
+      >
+        <BiTrash />
       </button>
       <div className={isOpen ? `modal modal-open` : `modal`}>
         <div className="modal-box text-center">

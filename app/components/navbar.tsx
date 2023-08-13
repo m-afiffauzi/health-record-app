@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import Logout from "./logout";
-import doctorIcon from "../../public/doctor-icon.png";
-import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { BiHome, BiLogIn, BiUserCircle, BiGroup } from "react-icons/bi";
 
 export default function Navbar() {
   const { data: session } = useSession();
+
   return (
     <div className="navbar sticky top-0 left-0 right-0 bg-primary text-primary-content md:px-10 z-10">
       <div className="navbar-start">
@@ -32,10 +32,14 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-primary rounded-box w-40"
           >
             <li>
-              <Link href={`/`}>🏠 Beranda</Link>
+              <Link href={`/`} className="text-base">
+                <BiHome /> Beranda
+              </Link>
             </li>
             <li>
-              <Link href={`/patient`}>🙎‍♂️ Pasien</Link>
+              <Link href={`/patient`} className="text-base">
+                <BiGroup /> Pasien
+              </Link>
             </li>
           </ul>
         </div>
@@ -49,9 +53,9 @@ export default function Navbar() {
         {session?.user?.name === undefined || null ? (
           <Link
             href={`/login`}
-            className="btn btn-ghost rounded-box capitalize"
+            className="btn btn-ghost rounded-box capitalize text-base"
           >
-            Login
+            <BiLogIn /> Login
           </Link>
         ) : (
           <div className="dropdown dropdown-end">
@@ -59,8 +63,8 @@ export default function Navbar() {
               tabIndex={0}
               className="btn btn-ghost rounded-box fill-white"
             >
-              <div className="flex flex-row gap-2">
-                <Image src={doctorIcon} alt="doctor" width={14} />
+              <div className="flex flex-row justify-center items-center gap-2 text-base">
+                <BiUserCircle />
                 <p className="capitalize">{session?.user?.name}</p>
               </div>
             </label>

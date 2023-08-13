@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { BiPlusCircle } from "react-icons/bi";
 
 export default function AddRecord({ id }: any) {
   const [weight, setWeight] = useState("");
@@ -43,8 +44,11 @@ export default function AddRecord({ id }: any) {
 
   return (
     <div>
-      <button className="btn btn-primary min-h-8 h-9" onClick={handleModal}>
-        Tambah Data
+      <button
+        className="btn btn-primary min-h-8 h-9 text-xl"
+        onClick={handleModal}
+      >
+        <BiPlusCircle />
       </button>
       <div className={isOpen ? `modal modal-open` : `modal`}>
         <div className="modal-box text-center">
@@ -119,7 +123,7 @@ export default function AddRecord({ id }: any) {
             <div className="modal-action">
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-warning text-white"
                 onClick={handleModal}
               >
                 Batal

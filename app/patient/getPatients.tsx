@@ -4,6 +4,7 @@ import Link from "next/link";
 import EditPatient from "./editPatient";
 import DeletePatient from "./deletePatient";
 import toast from "react-hot-toast";
+import { BiListUl } from "react-icons/bi";
 
 export default function GetPatients() {
   const { data, error } = useSWR(`/api/patients`);
@@ -67,11 +68,11 @@ export default function GetPatients() {
             <td>{patient.address}</td>
             <td className="flex gap-2 justify-center">
               <Link
-                className="btn btn-sm btn-info"
+                className="btn btn-sm btn-info text-xl"
                 id={patient.id}
                 href={`./patient/${patient.id}/record`}
               >
-                Riwayat
+                <BiListUl />
               </Link>
               <EditPatient patient={patient} />
               <DeletePatient patient={patient} />
