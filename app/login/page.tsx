@@ -16,13 +16,14 @@ export default function Login() {
       email,
       password,
       redirect: false,
+      callbackUrl: "/patient",
     }).then((res) => {
       if (res?.error) {
         toast.error(res.error);
       }
       if (res?.error === null) {
-        toast.success("Login berhasil");
         router.push("/patient");
+        toast.success("Login berhasil");
       }
     });
   };

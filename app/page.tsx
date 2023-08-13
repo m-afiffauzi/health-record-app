@@ -1,5 +1,3 @@
-import Image from "next/image";
-import BG from "@/public/doctor-tool.jpg";
 import Link from "next/link";
 
 export default function Home() {
