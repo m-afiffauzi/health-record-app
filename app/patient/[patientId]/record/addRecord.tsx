@@ -87,7 +87,6 @@ export default function AddRecord({ id }: any) {
               </label>
               <input
                 type="string"
-                inputMode="numeric"
                 className="input input-bordered"
                 maxLength={7}
                 placeholder="120/80"
@@ -101,7 +100,6 @@ export default function AddRecord({ id }: any) {
               </label>
               <input
                 type="string"
-                inputMode="numeric"
                 className="input input-bordered"
                 maxLength={7}
                 placeholder="100"

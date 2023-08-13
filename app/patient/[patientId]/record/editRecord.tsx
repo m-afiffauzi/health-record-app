@@ -93,7 +93,6 @@ export default function EditRecord({ record }: any) {
               </label>
               <input
                 type="string"
-                inputMode="numeric"
                 className="input input-bordered"
                 maxLength={7}
                 value={bloodPressure}
@@ -107,7 +106,6 @@ export default function EditRecord({ record }: any) {
               </label>
               <input
                 type="string"
-                inputMode="numeric"
                 className="input input-bordered"
                 maxLength={7}
                 value={bloodSugarLevel}
