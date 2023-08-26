@@ -1,14 +1,14 @@
 "use client";
-import Link from "next/link";
-import Logout from "./logout";
 import { useSession } from "next-auth/react";
 import { BiHome, BiLogIn, BiUserCircle, BiGroup } from "react-icons/bi";
+import Link from "next/link";
+import Logout from "./logout";
 
 export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <div className="navbar sticky top-0 left-0 right-0 bg-primary text-primary-content md:px-10 z-10">
+    <header className="navbar fixed top-0 left-0 right-0 bg-primary text-primary-content md:px-10 z-10">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -63,8 +63,12 @@ export default function Navbar() {
               tabIndex={0}
               className="btn btn-ghost rounded-box fill-white"
             >
-              <div className="flex flex-row justify-center items-center gap-2 text-base">
-                <BiUserCircle />
+              <div className="flex flex-row justify-center items-center gap-2 text-md">
+                <div className="avatar placeholder">
+                  <div className="w-6 rounded-full">
+                    <BiUserCircle className="text-2xl" />
+                  </div>
+                </div>
                 <p className="capitalize">{session?.user?.name}</p>
               </div>
             </label>
@@ -79,6 +83,6 @@ export default function Navbar() {
           </div>
         )}
       </div>
-    </div>
+    </header>
   );
 }

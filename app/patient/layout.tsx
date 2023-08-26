@@ -7,5 +7,5 @@ export default function PatientLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="md:px-10 h-screen px-2 py-4">{children}</div>;
+  return <div className="md:px-10 min-h-screen px-2 py-20">{children}</div>;
 }

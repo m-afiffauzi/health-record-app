@@ -4,7 +4,7 @@ import { prisma } from "../../libs/prisma";
 export async function GET(request: Request) {
   const patients = await prisma.patient.findMany({
     orderBy: {
-      id: "asc",
+      id: "desc",
     },
   });
   return NextResponse.json(patients);

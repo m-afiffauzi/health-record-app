@@ -1,36 +1,44 @@
 "use client";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { useForm, FieldValues } from "react-hook-form";
 import { BiEdit } from "react-icons/bi";
+import useSWR from "swr";
+import toast from "react-hot-toast";
 
 export default function EditPatient({ patient }: any) {
+  const { mutate } = useSWR(`/api/patients`);
+  const {
+    register,
+    formState: { errors, isSubmitting },
+    handleSubmit,
+  } = useForm({
+    values: patient,
+    resetOptions: {
+      keepDirtyValues: true, // keep dirty fields unchanged, but update defaultValues
+    },
+  });
   const [isOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState(patient.name);
-  const [nik, setNik] = useState(patient.nik);
-  const [birthday, setBirthday] = useState(patient.birthday);
-  const [address, setAddress] = useState(patient.address);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = async (data: FieldValues) => {
     try {
       const res = await fetch(`/api/patients/${patient.id}`, {
         method: "PATCH",
         body: JSON.stringify({
-          name,
-          nik,
-          birthday,
-          address,
+          name: data.name,
+          nik: data.nik,
+          birthday: data.birthday,
+          address: data.address,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
       if (res.ok) {
+        mutate();
         toast.success("Pasien berhasil diedit");
         setIsOpen(!isOpen);
       }
@@ -42,55 +50,80 @@ export default function EditPatient({ patient }: any) {
 
   return (
     <div>
-      <button
-        className="btn btn-success min-h-8 h-8 text-xl"
-        onClick={handleModal}
-      >
-        <BiEdit />
-      </button>
+      <div className="tooltip" data-tip="Edit Pasien">
+        <button
+          className="btn btn-success min-h-8 h-8 text-xl"
+          onClick={handleModal}
+        >
+          <BiEdit />
+        </button>
+      </div>
       <div className={isOpen ? `modal modal-open` : `modal`}>
         <div className="modal-box">
           <h3 className="font-bold text-lg">Edit Pasien</h3>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-full">
               <label className="label font-bold">Nama</label>
               <input
+                {...register("name", {
+                  required: "Tolong isi Nama",
+                })}
                 type="text"
                 className="input input-bordered"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                placeholder="Nama"
               />
+              {errors?.name && (
+                <p className="text-red-600 text-start">{`${errors.name.message}`}</p>
+              )}
             </div>
             <div className="form-control w-full">
               <label className="label font-bold">NIK</label>
               <input
-                type="string"
+                {...register("nik", {
+                  required: "Tolong isi NIK",
+                  minLength: {
+                    value: 16,
+                    message: "NIK harus berisi 16 angka",
+                  },
+                })}
+                type="text"
                 inputMode="numeric"
                 pattern="[0-9]*"
-                className="input input-bordered"
                 maxLength={16}
-                minLength={16}
-                value={nik}
-                onChange={(e) => setNik(e.target.value)}
+                className="input input-bordered"
+                placeholder="3308012345678900 (16 digit angka)"
               />
+              {errors?.nik && (
+                <p className="text-red-600 text-start">{`${errors.nik.message}`}</p>
+              )}
             </div>
             <div className="form-control w-full">
               <label className="label font-bold">Tanggal Lahir</label>
               <input
+                {...register("birthday", {
+                  required: "Tolong isi Tanggal Lahir",
+                })}
                 type="text"
                 className="input input-bordered"
-                value={birthday}
-                onChange={(e) => setBirthday(e.target.value)}
+                placeholder="17 Agustus 1945"
               />
+              {errors?.birthday && (
+                <p className="text-red-600 text-start">{`${errors.birthday.message}`}</p>
+              )}
             </div>
             <div className="form-control w-full">
               <label className="label font-bold">Alamat</label>
               <input
+                {...register("address", {
+                  required: "Tolong isi Alamat",
+                })}
                 type="text"
                 className="input input-bordered"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Alamat"
               />
+              {errors?.address && (
+                <p className="text-red-600 text-start">{`${errors.address.message}`}</p>
+              )}
             </div>
             <div className="modal-action">
               <button
@@ -100,7 +133,11 @@ export default function EditPatient({ patient }: any) {
               >
                 Batal
               </button>
-              <button type="submit" className="btn btn-success">
+              <button
+                disabled={isSubmitting}
+                type="submit"
+                className="btn btn-success"
+              >
                 Simpan
               </button>
             </div>

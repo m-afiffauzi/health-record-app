@@ -1,25 +1,33 @@
 "use client";
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
+import useSWR from "swr";
+import toast from "react-hot-toast";
 
 export default function DeleteRecord({ record }: any) {
+  const { mutate } = useSWR(`/api/patients/${record.patientId}/records`);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     try {
-      fetch(`/api/patients/${record.patientId}/records/${record.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      toast.success("Data berhasil dihapus");
-      setIsOpen(!isOpen);
+      const res = await fetch(
+        `/api/patients/${record.patientId}/records/${record.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (res.ok) {
+        mutate();
+        toast.success("Data berhasil dihapus");
+        setIsOpen(!isOpen);
+      }
     } catch (error) {
       toast.error("Terdapat masalah, coba beberapa saat lagi");
       console.log(error);
@@ -28,12 +36,14 @@ export default function DeleteRecord({ record }: any) {
 
   return (
     <div>
-      <button
-        className="btn btn-error min-h-8 h-8 text-xl"
-        onClick={handleModal}
-      >
-        <BiTrash />
-      </button>
+      <div className="tooltip" data-tip="Hapus Data">
+        <button
+          className="btn btn-error min-h-8 h-8 text-xl"
+          onClick={handleModal}
+        >
+          <BiTrash />
+        </button>
+      </div>
       <div className={isOpen ? `modal modal-open` : `modal`}>
         <div className="modal-box">
           <h3 className="font-bold text-lg">Hapus Data</h3>

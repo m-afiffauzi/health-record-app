@@ -10,7 +10,7 @@ export async function GET(
       patientId: Number(params.id),
     },
     orderBy: {
-      createdAt: "asc",
+      createdAt: "desc",
     },
   });
   return NextResponse.json(records);

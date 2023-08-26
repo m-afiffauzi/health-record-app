@@ -1,25 +1,30 @@
 "use client";
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
+import toast from "react-hot-toast";
+import useSWR from "swr";
 
 export default function DeletePatient({ patient }: any) {
+  const { mutate } = useSWR(`/api/patients`);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     try {
-      fetch(`/api/patients/${patient.id}`, {
+      const res = await fetch(`/api/patients/${patient.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      toast.success("Pasien berhasil dihapus");
-      setIsOpen(!isOpen);
+      if (res.ok) {
+        mutate();
+        toast.success("Pasien berhasil dihapus");
+        setIsOpen(!isOpen);
+      }
     } catch (error) {
       toast.error("Terdapat masalah, coba beberapa saat lagi");
       console.log(error);
@@ -28,12 +33,14 @@ export default function DeletePatient({ patient }: any) {
 
   return (
     <div>
-      <button
-        className="btn btn-error min-h-8 h-8 text-xl"
-        onClick={handleModal}
-      >
-        <BiTrash />
-      </button>
+      <div className="tooltip" data-tip="Hapus Pasien">
+        <button
+          className="btn btn-error min-h-8 h-8 text-xl"
+          onClick={handleModal}
+        >
+          <BiTrash />
+        </button>
+      </div>
       <div className={isOpen ? `modal modal-open` : `modal`}>
         <div className="modal-box text-center">
           <h3 className="font-bold text-lg">Hapus Pasien</h3>
