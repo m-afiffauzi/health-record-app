@@ -71,31 +71,30 @@ export default function Patient() {
                 <td colSpan={6}>Tidak ada pasien</td>
               </tr>
             )}
-            {currentPatientData &&
-              currentPatientData?.map((patient: TPatient, index: number) => {
-                return (
-                  <tr key={patient.id} className="hover text-sm text-center">
-                    <td>{index + firstPatientIndex + 1}</td>
-                    <td>{patient.name}</td>
-                    <td>{patient.nik}</td>
-                    <td>{patient.birthday}</td>
-                    <td>{patient.address}</td>
-                    <td className="flex gap-2 justify-center">
-                      <div className="tooltip" data-tip="Riwayat Pasien">
-                        <Link
-                          className="btn btn-sm btn-info text-xl"
-                          id={patient.id}
-                          href={`./patient/${patient.id}/record`}
-                        >
-                          <BiListUl />
-                        </Link>
-                      </div>
-                      <EditPatient patient={patient} />
-                      <DeletePatient patient={patient} />
-                    </td>
-                  </tr>
-                );
-              })}
+            {currentPatientData?.map((patient: TPatient, index: number) => {
+              return (
+                <tr key={patient.id} className="hover text-sm text-center">
+                  <td>{index + firstPatientIndex + 1}</td>
+                  <td>{patient.name}</td>
+                  <td>{patient.nik}</td>
+                  <td>{patient.birthday}</td>
+                  <td>{patient.address}</td>
+                  <td className="flex gap-2 justify-center">
+                    <div className="tooltip" data-tip="Riwayat Pasien">
+                      <Link
+                        className="btn btn-sm btn-info text-xl"
+                        id={patient.id}
+                        href={`./patient/${patient.id}/record`}
+                      >
+                        <BiListUl />
+                      </Link>
+                    </div>
+                    <EditPatient patient={patient} />
+                    <DeletePatient patient={patient} />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

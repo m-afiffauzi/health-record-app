@@ -96,46 +96,45 @@ export default function Patient() {
                 <td colSpan={9}>Tidak ada riwayat</td>
               </tr>
             )}
-            {currentRecordData &&
-              currentRecordData?.map((record: TRecord, index: number) => {
-                const createdDateParse = Date.parse(record.createdAt);
-                const createdDate = new Date(createdDateParse);
-                const createdDateFormat = createdDate.toLocaleDateString(
-                  "id-ID",
-                  {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  }
-                );
-                const updatedDateParse = Date.parse(record.updatedAt);
-                const updatedDate = new Date(updatedDateParse);
-                const updatedDateFormat = updatedDate.toLocaleDateString(
-                  "id-ID",
-                  {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  }
-                );
+            {currentRecordData?.map((record: TRecord, index: number) => {
+              const createdDateParse = Date.parse(record.createdAt);
+              const createdDate = new Date(createdDateParse);
+              const createdDateFormat = createdDate.toLocaleDateString(
+                "id-ID",
+                {
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric",
+                }
+              );
+              const updatedDateParse = Date.parse(record.updatedAt);
+              const updatedDate = new Date(updatedDateParse);
+              const updatedDateFormat = updatedDate.toLocaleDateString(
+                "id-ID",
+                {
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric",
+                }
+              );
 
-                return (
-                  <tr key={record.id} className="hover text-sm text-center">
-                    <td>{index + firstRecordIndex + 1}</td>
-                    <td>{record.weight} kg</td>
-                    <td>{record.height} cm</td>
-                    <td>{record.bloodPressure} mmHg</td>
-                    <td>{record.bloodSugarLevel} mg/dL</td>
-                    <td>{record.note ? record.note : "-"}</td>
-                    <td>{createdDateFormat}</td>
-                    <td>{updatedDateFormat}</td>
-                    <td className="flex gap-2 justify-center">
-                      <EditRecord record={record} />
-                      <DeleteRecord record={record} />
-                    </td>
-                  </tr>
-                );
-              })}
+              return (
+                <tr key={record.id} className="hover text-sm text-center">
+                  <td>{index + firstRecordIndex + 1}</td>
+                  <td>{record.weight} kg</td>
+                  <td>{record.height} cm</td>
+                  <td>{record.bloodPressure} mmHg</td>
+                  <td>{record.bloodSugarLevel} mg/dL</td>
+                  <td>{record.note ? record.note : "-"}</td>
+                  <td>{createdDateFormat}</td>
+                  <td>{updatedDateFormat}</td>
+                  <td className="flex gap-2 justify-center">
+                    <EditRecord record={record} />
+                    <DeleteRecord record={record} />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

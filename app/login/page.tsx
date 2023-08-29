@@ -3,15 +3,18 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { BiInfoCircle } from "react-icons/bi";
 
 export default function Login() {
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/patient";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { data: session } = useSession();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/patient";
   const router = useRouter();
+  console.log(callbackUrl);
 
   if (session?.user?.name !== undefined || null) {
     router.push(callbackUrl);
@@ -19,6 +22,7 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await signIn("credentials", {
         email,
@@ -27,13 +31,13 @@ export default function Login() {
         callbackUrl,
       });
       console.log(res);
-      if (res?.error) {
-        setError(res.error);
-      }
-      if (res?.error === null) {
+      if (res?.error == null) {
         toast.success("Login berhasil");
         router.push(callbackUrl);
+      } else {
+        setError(res.error);
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -72,12 +76,19 @@ export default function Login() {
               />
             </div>
             {error && (
-              <div className="bg-error p-2 rounded-md">
-                <span>{error}</span>
+              <div className="bg-error py-2 px-4 rounded-md flex items-center gap-2">
+                <div className="text-lg">
+                  <BiInfoCircle />
+                </div>
+                <span className="pb-0.5">{error}</span>
               </div>
             )}
             <div className="form-control mt-4">
-              <button className="btn btn-primary">Login</button>
+              <button
+                className={`btn btn-primary ${loading ? "btn-disabled" : ""}`}
+              >
+                Login
+              </button>
             </div>
           </div>
         </form>
