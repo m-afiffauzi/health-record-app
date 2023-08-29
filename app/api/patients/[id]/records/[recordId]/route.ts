@@ -5,13 +5,13 @@ export async function GET(
   request: Request,
   { params: { id, recordId } }: { params: { id: string; recordId: string } }
 ) {
-  const patient = await prisma.record.findFirst({
+  const record = await prisma.record.findFirst({
     where: {
       id: Number(recordId),
       patientId: Number(id),
     },
   });
-  return NextResponse.json(patient);
+  return NextResponse.json(record);
 }
 
 export async function PUT(

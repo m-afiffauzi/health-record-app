@@ -17,10 +17,7 @@ export default function RootLayout({
         <meta name="description" content="Website rekam data pasien" />
       </head>
       <SWRProvider>
-        <body
-          className="pattern-cross pattern-blue-500 pattern-bg-white 
-  pattern-size-6 pattern-opacity-20"
-        >
+        <body>
           <AuthProvider>
             <Toaster />
             <Navbar />
