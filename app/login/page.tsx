@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
-import { redirect, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Login() {
   const searchParams = useSearchParams();
@@ -11,9 +11,10 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const { data: session } = useSession();
+  const router = useRouter();
 
   if (session?.user?.name !== undefined || null) {
-    redirect(callbackUrl);
+    router.push(callbackUrl);
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,7 +32,7 @@ export default function Login() {
       }
       if (res?.error === null) {
         toast.success("Login berhasil");
-        redirect(callbackUrl);
+        router.push(callbackUrl);
       }
     } catch (error) {
       console.log(error);
