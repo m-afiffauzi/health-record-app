@@ -20,6 +20,7 @@ export default function Login() {
     signIn("credentials", {
       email,
       password,
+      redirect: false,
     }).then((res) => {
       if (res?.error) {
         toast.error(res.error);
