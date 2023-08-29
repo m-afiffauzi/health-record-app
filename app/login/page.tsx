@@ -2,18 +2,16 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { error } from "console";
+import { redirect } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const { data: session } = useSession();
-  const router = useRouter();
 
   if (session?.user?.name !== undefined || null) {
-    router.push("/patient");
+    redirect("/patient");
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -22,7 +20,6 @@ export default function Login() {
     signIn("credentials", {
       email,
       password,
-      redirect: false,
     }).then((res) => {
       if (res?.error) {
         toast.error(res.error);
@@ -30,7 +27,7 @@ export default function Login() {
       }
       if (res?.error === null) {
         toast.success("Login berhasil");
-        router.push("/patient");
+        redirect("/patient");
       }
     });
   };

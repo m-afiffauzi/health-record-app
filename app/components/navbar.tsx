@@ -52,7 +52,7 @@ export default function Navbar() {
       <div className="navbar-end">
         {session?.user?.name === undefined || null ? (
           <Link
-            href={`/login`}
+            href={`/login?callbackUrl=/patient`}
             className="btn btn-ghost rounded-box capitalize text-base"
           >
             <BiLogIn /> Login
