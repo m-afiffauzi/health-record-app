@@ -2,35 +2,40 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 
 export default function Login() {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/patient";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const { data: session } = useSession();
 
   if (session?.user?.name !== undefined || null) {
-    redirect("/patient");
+    redirect(callbackUrl);
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    }).then((res) => {
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl,
+      });
+      console.log(res);
       if (res?.error) {
-        toast.error(res.error);
         setError(res.error);
       }
       if (res?.error === null) {
         toast.success("Login berhasil");
-        redirect("/patient");
+        redirect(callbackUrl);
       }
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
