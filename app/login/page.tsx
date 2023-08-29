@@ -30,6 +30,7 @@ export default function Login() {
       }
       if (res?.error === null) {
         toast.success("Login berhasil");
+        router.push("/patient");
       }
     });
   };
