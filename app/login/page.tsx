@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -8,17 +8,18 @@ import { BiInfoCircle } from "react-icons/bi";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { data: session } = useSession();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/patient";
+  const callbackUrl = searchParams.get("callbackUrl") ?? "/patient";
   const router = useRouter();
-  console.log(callbackUrl);
 
-  if (session?.user?.name !== undefined || null) {
-    router.push(callbackUrl);
-  }
+  useEffect(() => {
+    if (session) {
+      router.push(callbackUrl);
+    }
+  }, [session, callbackUrl, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,11 +28,10 @@ export default function Login() {
       const res = await signIn("credentials", {
         email,
         password,
-        redirect: false,
         callbackUrl,
+        redirect: false,
       });
-      console.log(res);
-      if (res?.error == null) {
+      if (!res?.error) {
         toast.success("Login berhasil");
         router.push(callbackUrl);
       } else {

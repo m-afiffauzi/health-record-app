@@ -6,7 +6,7 @@ export default function Logout() {
   const handleLogout = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    signOut();
+    signOut({ callbackUrl: "/" });
     toast.success("Logout berhasil");
   };
   return (
