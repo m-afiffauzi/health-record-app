@@ -49,7 +49,7 @@ export default function Patient() {
       <div className="overflow-x-auto">
         <table className="table">
           <thead>
-            <tr className="text-primary text-lg text-center">
+            <tr className="text-primary text-sm lg:text-base text-center">
               <th>#</th>
               <th>Nama</th>
               <th>NIK</th>
@@ -60,20 +60,23 @@ export default function Patient() {
           </thead>
           <tbody>
             {!data && (
-              <tr className="hover text-2xl lg:text-center">
+              <tr className="hover text-lg lg:text-2xl lg:text-center">
                 <td colSpan={6}>
                   <span className="loading loading-dots loading-lg"></span>
                 </td>
               </tr>
             )}
             {currentPatientData?.length === 0 && (
-              <tr className="hover text-lg lg:text-center">
+              <tr className="hover text-xs lg:text-sm lg:text-center">
                 <td colSpan={6}>Tidak ada pasien</td>
               </tr>
             )}
             {currentPatientData?.map((patient: TPatient, index: number) => {
               return (
-                <tr key={patient.id} className="hover text-sm text-center">
+                <tr
+                  key={patient.id}
+                  className="hover text-xs lg:text-sm text-center"
+                >
                   <td>{index + firstPatientIndex + 1}</td>
                   <td>{patient.name}</td>
                   <td>{patient.nik}</td>

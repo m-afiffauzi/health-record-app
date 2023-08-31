@@ -71,7 +71,7 @@ export default function Patient() {
       <div className="overflow-x-auto">
         <table className="table">
           <thead>
-            <tr className="text-primary text-base lg:text-lg text-center">
+            <tr className="text-primary text-sm lg:text-base text-center">
               <th>#</th>
               <th>Berat</th>
               <th>Tinggi</th>
@@ -85,14 +85,14 @@ export default function Patient() {
           </thead>
           <tbody>
             {!data && (
-              <tr className="hover text-2xl lg:text-center">
+              <tr className="hover text-lg lg:text-2xl lg:text-center">
                 <td colSpan={9}>
                   <span className="loading loading-dots loading-lg"></span>
                 </td>
               </tr>
             )}
             {currentRecordData?.length === 0 && (
-              <tr className="hover text-lg lg:text-center">
+              <tr className="hover text-xs lg:text-sm lg:text-center">
                 <td colSpan={9}>Tidak ada riwayat</td>
               </tr>
             )}
@@ -119,7 +119,10 @@ export default function Patient() {
               );
 
               return (
-                <tr key={record.id} className="hover text-sm text-center">
+                <tr
+                  key={record.id}
+                  className="hover text-xs lg:text-sm text-center"
+                >
                   <td>{index + firstRecordIndex + 1}</td>
                   <td>{record.weight} kg</td>
                   <td>{record.height} cm</td>

@@ -32,9 +32,9 @@ export default function Login() {
         redirect: false,
       });
       if (!res?.error) {
-        toast.success("Login berhasil");
         router.push(callbackUrl);
         location.reload();
+        toast.success("Login berhasil");
       } else {
         setError(res.error);
       }

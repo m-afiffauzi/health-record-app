@@ -55,7 +55,7 @@ export default function AddRecord({ id }: any) {
     <div>
       <div className="tooltip tooltip-right" data-tip="Tambah Data">
         <button
-          className="btn btn-primary px-9 min-h-8 h-9 text-xl"
+          className="btn btn-primary px-7 lg:px-9 min-h-8 h-9 text-xl"
           onClick={handleModal}
         >
           <BiPlusCircle />
