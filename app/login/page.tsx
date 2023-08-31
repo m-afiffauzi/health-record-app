@@ -14,6 +14,7 @@ export default function Login() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/patient";
   const router = useRouter();
+  console.log(callbackUrl);
 
   useEffect(() => {
     if (session) {

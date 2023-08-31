@@ -51,18 +51,12 @@ export default function Navbar() {
       </div>
       <div className="navbar-end">
         {session?.user?.name === undefined || null ? (
-          <Link
-            href={`/login?callbackUrl=/patient`}
-            className="btn btn-ghost rounded-box capitalize text-base"
-          >
+          <Link href={`/login`} className="btn btn-ghost capitalize text-base">
             <BiLogIn /> Login
           </Link>
         ) : (
           <div className="dropdown dropdown-end">
-            <label
-              tabIndex={0}
-              className="btn btn-ghost rounded-box fill-white"
-            >
+            <label tabIndex={0} className="btn btn-ghost fill-white">
               <div className="flex flex-row justify-center items-center gap-2 text-md">
                 <div className="avatar placeholder">
                   <div className="w-6 rounded-full">

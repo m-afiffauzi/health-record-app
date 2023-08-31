@@ -1,8 +1,11 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import Medical from "../public/medical.jpg";
 
 export default function Home() {
+  const { data: session } = useSession();
   return (
     <div className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse lg:gap-20">
@@ -18,9 +21,15 @@ export default function Home() {
           <p className="py-6">
             Aplikasi untuk menyimpan data dan riwayat pasien.
           </p>
-          <Link href={"/patient"}>
-            <button className="btn btn-primary">Daftar Pasien</button>
-          </Link>
+          {session ? (
+            <Link href={"/patient"}>
+              <button className="btn btn-primary">Daftar Pasien</button>
+            </Link>
+          ) : (
+            <Link href={"/login"}>
+              <button className="btn btn-primary py-2">Login</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
