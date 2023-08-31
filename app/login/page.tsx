@@ -14,7 +14,6 @@ export default function Login() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/patient";
   const router = useRouter();
-  console.log(callbackUrl);
 
   useEffect(() => {
     if (session) {
@@ -35,6 +34,7 @@ export default function Login() {
       if (!res?.error) {
         toast.success("Login berhasil");
         router.push(callbackUrl);
+        location.reload();
       } else {
         setError(res.error);
       }

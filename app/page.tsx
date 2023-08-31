@@ -1,11 +1,11 @@
-"use client";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 import Medical from "../public/medical.jpg";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
-export default function Home() {
-  const { data: session } = useSession();
+export default async function Home() {
+  const session = await getServerSession(authOptions);
   return (
     <div className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse lg:gap-20">
