@@ -55,6 +55,8 @@ export default function AddRecord({ id }: any) {
     <div>
       <div className="tooltip tooltip-right" data-tip="Tambah Data">
         <button
+          id="add-record"
+          aria-label="add-record"
           className="btn btn-primary px-7 lg:px-9 min-h-8 h-9 text-xl"
           onClick={handleModal}
         >
@@ -151,6 +153,8 @@ export default function AddRecord({ id }: any) {
             </div>
             <div className="modal-action">
               <button
+                id="cancel-add"
+                aria-label="cancel-add"
                 type="button"
                 className="btn btn-warning text-white"
                 onClick={handleModal}
@@ -158,6 +162,8 @@ export default function AddRecord({ id }: any) {
                 Batal
               </button>
               <button
+                id="save-record"
+                aria-label="save-record"
                 disabled={isSubmitting}
                 type="submit"
                 className="btn btn-primary"

@@ -61,6 +61,8 @@ export default function EditRecord({ record }: any) {
     <div>
       <div className="tooltip" data-tip="Edit Data">
         <button
+          id="edit-record"
+          aria-label="edit-record"
           className="btn btn-success min-h-8 h-8 text-xl"
           onClick={handleModal}
         >
@@ -157,6 +159,8 @@ export default function EditRecord({ record }: any) {
             </div>
             <div className="modal-action">
               <button
+                id="cancel-edit"
+                aria-label="cancel-edit"
                 type="button"
                 className="btn btn-warning"
                 onClick={handleModal}
@@ -164,6 +168,8 @@ export default function EditRecord({ record }: any) {
                 Batal
               </button>
               <button
+                id="save-edit"
+                aria-label="save-edit"
                 disabled={isSubmitting}
                 type="submit"
                 className="btn btn-success"

@@ -35,6 +35,8 @@ export default function DeletePatient({ patient }: any) {
     <div>
       <div className="tooltip" data-tip="Hapus Pasien">
         <button
+          id="delete-patient"
+          aria-label="delete-patient"
           className="btn btn-error min-h-8 h-8 text-xl"
           onClick={handleModal}
         >
@@ -49,6 +51,8 @@ export default function DeletePatient({ patient }: any) {
           </h2>
           <div className="modal-action justify-center gap-2">
             <button
+              id="cancel-delete"
+              aria-label="cancel-delete"
               type="button"
               className="btn btn-warning"
               onClick={handleModal}
@@ -56,6 +60,8 @@ export default function DeletePatient({ patient }: any) {
               Batal, Kembali
             </button>
             <button
+              id="confirfm-delete"
+              aria-label="confirfm-delete"
               type="button"
               onClick={handleDelete}
               className="btn btn-error"

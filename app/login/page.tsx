@@ -86,6 +86,8 @@ export default function Login() {
             )}
             <div className="form-control mt-4">
               <button
+                id="login"
+                aria-label="login"
                 className={`btn btn-primary ${loading ? "btn-disabled" : ""}`}
               >
                 Login

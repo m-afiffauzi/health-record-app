@@ -84,12 +84,14 @@ export default function Patient() {
                   <td>{patient.address}</td>
                   <td className="flex gap-2 justify-center">
                     <div className="tooltip" data-tip="Riwayat Pasien">
-                      <Link
-                        className="btn btn-sm btn-info text-xl"
-                        id={patient.id}
-                        href={`./patient/${patient.id}/record`}
-                      >
-                        <BiListUl />
+                      <Link href={`./patient/${patient.id}/record`}>
+                        <button
+                          className="btn btn-sm btn-info text-xl"
+                          id="patient-record"
+                          aria-label="patient-record"
+                        >
+                          <BiListUl />
+                        </button>
                       </Link>
                     </div>
                     <EditPatient patient={patient} />

@@ -6,6 +6,7 @@ import useSWR from "swr";
 import toast from "react-hot-toast";
 
 export default function EditPatient({ patient }: any) {
+  console.log(patient);
   const { mutate } = useSWR(`/api/patients`);
   const {
     register,
@@ -52,6 +53,8 @@ export default function EditPatient({ patient }: any) {
     <div>
       <div className="tooltip" data-tip="Edit Pasien">
         <button
+          id="edit-patient"
+          aria-label="edit-patient"
           className="btn btn-success min-h-8 h-8 text-xl"
           onClick={handleModal}
         >
@@ -127,6 +130,8 @@ export default function EditPatient({ patient }: any) {
             </div>
             <div className="modal-action">
               <button
+                id="cancel-edit"
+                aria-label="cancel-edit"
                 type="button"
                 className="btn btn-warning"
                 onClick={handleModal}
@@ -134,6 +139,8 @@ export default function EditPatient({ patient }: any) {
                 Batal
               </button>
               <button
+                id="save-edit"
+                aria-label="save-edit"
                 disabled={isSubmitting}
                 type="submit"
                 className="btn btn-success"

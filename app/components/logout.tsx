@@ -10,7 +10,12 @@ export default function Logout() {
     toast.success("Logout berhasil");
   };
   return (
-    <button onClick={handleLogout} className="p-1 text-base">
+    <button
+      id="logout"
+      aria-label="logout"
+      onClick={handleLogout}
+      className="p-1 text-base"
+    >
       <BiLogOut /> Logout
     </button>
   );

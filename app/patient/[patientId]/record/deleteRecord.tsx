@@ -38,6 +38,8 @@ export default function DeleteRecord({ record }: any) {
     <div>
       <div className="tooltip" data-tip="Hapus Data">
         <button
+          id="delete-record"
+          aria-label="delete-record"
           className="btn btn-error min-h-8 h-8 text-xl"
           onClick={handleModal}
         >
@@ -50,6 +52,8 @@ export default function DeleteRecord({ record }: any) {
           <h2 className="pt-2 text-lg">Yakin ingin menghapus data ini?</h2>
           <div className="modal-action justify-center">
             <button
+              id="cancel-delete"
+              aria-label="cancel-delete"
               type="button"
               className="btn btn-warning"
               onClick={handleModal}
@@ -57,6 +61,8 @@ export default function DeleteRecord({ record }: any) {
               Batal, Kembali
             </button>
             <button
+              id="confirm-delete"
+              aria-label="confirm-delete"
               type="button"
               onClick={handleDelete}
               className="btn btn-error"

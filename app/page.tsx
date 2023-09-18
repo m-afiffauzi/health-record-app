@@ -22,12 +22,12 @@ export default async function Home() {
             Aplikasi untuk menyimpan data dan riwayat pasien.
           </p>
           {session ? (
-            <Link href={"/patient"}>
-              <button className="btn btn-primary">Daftar Pasien</button>
+            <Link href={"/patient"} className="btn btn-primary">
+              Daftar Pasien
             </Link>
           ) : (
-            <Link href={"/login"}>
-              <button className="btn btn-primary py-2">Login</button>
+            <Link href={"/login"} className="btn btn-primary py-2">
+              Login
             </Link>
           )}
         </div>
