@@ -14,7 +14,7 @@ export default function Logout() {
       id="logout"
       aria-label="logout"
       onClick={handleLogout}
-      className="p-1 text-base"
+      className="bg-primary border border-primary hover:bg-base-100 hover:text-black font-semibold p-1 flex items-center"
     >
       <BiLogOut /> Logout
     </button>

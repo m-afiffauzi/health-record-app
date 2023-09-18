@@ -45,9 +45,11 @@ export default function Login() {
   };
 
   return (
-    <section className="flex justify-center items-center min-h-screen md:px-10 px-2 py-20">
-      <div className="card flex justify-center items-center flex-shrink-0 w-full md:h-2/3 h-full max-w-sm lg:shadow-2xl bg-neutral-100">
-        <h1 className="text-5xl text-center font-bold mt-6">Login</h1>
+    <section className="min-h-screen flex justify-center items-center py-20">
+      <div className="card flex justify-center items-center flex-shrink-0 w-full sm:w-[400px] md:h-2/3 h-full lg:shadow-2xl bg-neutral-100">
+        <h1 className="text-3xl lg:text-5xl text-center font-bold mt-6">
+          Login
+        </h1>
         <form className="w-full" onSubmit={handleSubmit}>
           <div className="card-body">
             <div className="form-control">

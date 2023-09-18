@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { BiListUl, BiHome, BiGroup } from "react-icons/bi";
 import Link from "next/link";
 import useSWR from "swr";

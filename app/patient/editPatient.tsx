@@ -6,7 +6,6 @@ import useSWR from "swr";
 import toast from "react-hot-toast";
 
 export default function EditPatient({ patient }: any) {
-  console.log(patient);
   const { mutate } = useSWR(`/api/patients`);
   const {
     register,
