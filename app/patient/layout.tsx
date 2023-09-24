@@ -8,7 +8,7 @@ export default function PatientLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full sm:w-[640px] md:w-[750px] lg:w-[1000px] xl:w-[1200px] 2xl:w-[1440px] min-h-screen px-2 py-20">
+    <div className="w-full sm:max-w-[640px] md:max-w-[750px] lg:max-w-[1000px] xl:max-w-[1200px] 2xl:max-w-[1440px] px-2 pt-20 pb-8 min-h-screen">
       {children}
     </div>
   );

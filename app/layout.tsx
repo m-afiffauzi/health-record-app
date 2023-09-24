@@ -17,7 +17,7 @@ export default function RootLayout({
         <meta name="description" content="Website rekam data pasien" />
       </head>
       <SWRProvider>
-        <body className="w-full flex flex-col items-center justify-center">
+        <body className="w-full min-h-screen flex flex-col items-center justify-center">
           <AuthProvider>
             <Toaster />
             <Navbar />

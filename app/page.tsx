@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
-import Medical from "../public/medical.jpg";
+import Doctor from "../public/images/doctor.png";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 
 export default async function Home() {
@@ -11,8 +11,8 @@ export default async function Home() {
       <div className="hero-content flex-col lg:flex-row-reverse lg:gap-20">
         <Image
           alt="Hero"
-          src={Medical}
-          className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-lg border border-lg border-primary"
+          src={Doctor}
+          className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
           width={600}
           height={400}
         />
@@ -23,7 +23,7 @@ export default async function Home() {
           </p>
           {session ? (
             <Link href={"/patient"} className="btn btn-primary">
-              Daftar Pasien
+              Dashboard
             </Link>
           ) : (
             <Link href={"/login"} className="btn btn-primary py-2">

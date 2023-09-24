@@ -52,13 +52,18 @@ export default function Login() {
         </h1>
         <form className="w-full" onSubmit={handleSubmit}>
           <div className="card-body">
+            <div className="w-full flex flex-col items-center justify-center gap-1 bg-white rounded-lg">
+              <p className="font-bold">Demo Account</p>
+              <p>Email: admin@gmail.com</p>
+              <p>Password: admin123</p>
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
                 type="email"
-                placeholder="admin@admin.com"
+                placeholder="admin@gmail.com"
                 className="input input-bordered"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -71,7 +76,7 @@ export default function Login() {
               </label>
               <input
                 type="password"
-                placeholder="password"
+                placeholder="********"
                 className="input input-bordered"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
